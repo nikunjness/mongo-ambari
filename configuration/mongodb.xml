@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+    <property>
+        <name>db_path</name>
+        <value>/var/lib/mongo</value>
+        <description>
+            Path where the mongodb is stored.
+        </description>
+    </property>
+    <property>
+        <name>bind_ip</name>
+        <value>0.0.0.0</value>
+        <description>
+            Interface on which to listen, by default all interfaces.
+            Set for example, 127.0.0.1 to switch to the local loopback interface only.
+            Or set to a specific internal IP if known.
+            If you don't know the specific internal IP here, you should set mongodb_host instead to the hostname of the master server.
+            This will make client connections easier.
+        </description>
+    </property>
+    <property>
+        <name>tcp_port</name>
+        <value>27017</value>
+        <description>
+            Port on which mongod listens for incoming client connections.
+            The Web Status page is always 1000 higher than this port number
+        </description>
+    </property>
+    <property>
+        <name>mongo_host</name>
+        <value>unknown</value>
+        <description>
+            You only need to set this if you haven't set bind_ip to a specific internal IP.
+            If you know either the internal IP or the mongodb host name in advance, this will make client connections easier.
+        </description>
+    </property>
+</configuration>

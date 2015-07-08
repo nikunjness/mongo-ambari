@@ -1,0 +1,47 @@
+if [[ "$@" == *"--help"* ]]; then
+  echo "mongok script, wrapper around common mongod client commands to connect directly"
+  echo "to the mongo which sits in this kave. Reads the contents of /etc/mongoclient.conf"
+  echo "understands export import perf stat dump files oplog restore top and the mongo shell"
+  echo ""
+  echo "usage: mongok [command] [other arguments]"
+  echo "e.g.: mongok /foo #opens the mongo shell to mongo_host:mongo_port/foo database"
+  echo "e.g.: mongok top #starts mongotop --host mongo_host:mongo_port"
+fi
+
+mongo_host=''
+mongo_port=''
+known_commands="export import perf stat dump files oplog restore top"
+if [ -f /etc/mongoclient.conf ]; then
+  mongo_host_tmp=`grep -e mongo_host /etc/mongoclient.conf | awk -F ":" '{print $2}' | tr -d '[[:space:]]'`
+  mongo_port_tmp=`grep -e mongo_port /etc/mongoclient.conf | awk -F ":" '{print $2}' | tr -d '[[:space:]]'`
+  if [ ! -z "$mongo_host_tmp" ]; then
+    mongo_host=$mongo_host_tmp
+  fi
+  if [ ! -z "$mongo_port_tmp" ]; then
+    mongo_port=$mongo_port_tmp
+  fi
+else
+  echo "Error: no /etc/mongoclient.conf found!"
+  exit 1
+fi
+
+if [ -z "$mongo_host" ]; then
+  echo "Error: no mongo_host found from /etc/mongoclient.conf"
+  exit 1
+fi
+if [ -z "$mongo_port" ]; then
+  echo "Error: no mongo_port found from /etc/mongoclient.conf"
+  exit 1
+fi
+
+
+
+if [ -z "$1" ]; then
+  mongo ${mongo_host}:${mongo_port}
+elif [[ "$known_commands" == *"$1"* ]]; then
+  mongo$@ --host ${mongo_host}:${mongo_port}
+elif [[ "${1:0:1}" == "/" ]]; then
+  mongo ${mongo_host}:${mongo_port}$@
+else
+  mongo ${mongo_host}:${mongo_port} $@
+fi
