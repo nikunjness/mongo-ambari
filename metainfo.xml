@@ -6,9 +6,9 @@
             <name>MONGODB</name>
             <displayName>MongoDB</displayName>
             <comment>The intermediate database in your lambda stack</comment>
-            <version>2.6</version>
+            <version>3.2</version>
             <components>
-                    <component>
+                <component>
                     <name>MONGODB_MASTER</name>
                     <displayName>MongoDB Master</displayName>
                     <category>MASTER</category>
@@ -18,7 +18,7 @@
                         <timeout>6000</timeout>
                     </commandScript>
                 </component>
-                    <component>
+                <component>
                     <name>MONGODB_CLIENT</name>
                     <displayName>MongoDB Clients. Installs the client libraries and the kmongo script for ease of use.</displayName>
                     <category>CLIENT</category>
@@ -29,9 +29,9 @@
                     </commandScript>
                 </component>
             </components>
-           <osSpecifics>
+            <osSpecifics>
                 <osSpecific>
-                    <osFamily>any</osFamily>
+                    <osFamily>rhel5,rhel6,rhel7</osFamily>
                     <packages>
                         <package><name>glibc</name></package>
                     </packages>
