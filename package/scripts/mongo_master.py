@@ -10,14 +10,14 @@ class MongoMaster(MongoBase):
         import params
         env.set_params(params)
         self.installMongo(env)
-        self.configure(env)
 
-    def configure(self,env):
+    def configure(self, env):
         import params
         env.set_params(params)
         self.configureMongo(env)
 
     def start(self, env):
+        self.configure(env)
         print "start mongodb"
         Execute('service mongod start > /dev/null ')
 
