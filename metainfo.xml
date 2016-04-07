@@ -29,6 +29,7 @@
                     </commandScript>
                 </component>
             </components>
+
             <osSpecifics>
                 <osSpecific>
                     <osFamily>rhel5,rhel6,rhel7</osFamily>
@@ -37,6 +38,10 @@
                     </packages>
                 </osSpecific>
             </osSpecifics>
+
+            <configuration-dependencies>
+                <config-type>mongodb</config-type>
+            </configuration-dependencies>
         </service>
     </services>
 </metainfo>

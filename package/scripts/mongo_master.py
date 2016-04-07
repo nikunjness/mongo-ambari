@@ -19,15 +19,16 @@ class MongoMaster(MongoBase):
     def start(self, env):
         self.configure(env)
         print "start mongodb"
-        Execute('service mongod start > /dev/null ')
+        Execute('service mongod start')
 
     def stop(self, env):
         print "stop services.."
         Execute('service mongod stop')
 
     def restart(self, env):
+        self.configure(env)
         print "restart mongodb"
-        Execute('service mongod restart > /dev/null ')
+        Execute('service mongod restart')
 
     def status(self, env):
         print "checking status..."
