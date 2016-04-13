@@ -1,2 +1,8 @@
+# Ambari
+.hash
+archive.zip
+# Various editors swap files
+*.sw?
+*~
 .idea
 *.iml
