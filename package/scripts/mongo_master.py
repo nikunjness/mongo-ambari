@@ -1,10 +1,9 @@
-import os
-
+from time import sleep
 from resource_management import *
 from mongo_base import MongoBase
 
 class MongoMaster(MongoBase):
-    mongo_packages=['mongodb-org']
+    mongo_packages = ['mongodb-org']
 
     def install(self, env):
         import params
@@ -20,6 +19,8 @@ class MongoMaster(MongoBase):
         self.configure(env)
         print "start mongodb"
         Execute('service mongod start')
+        sleep(1)
+        self.createDB(env)
 
     def stop(self, env):
         print "stop services.."

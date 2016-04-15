@@ -1,5 +1,3 @@
-import os
-
 from resource_management import *
 from mongo_base import MongoBase
 

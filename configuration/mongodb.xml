@@ -1,29 +1,64 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 
-<configuration supports_final="true" supports_adding_forbidden="true">
-    <property>
-        <name>db_path</name>
-        <value>/var/lib/mongo</value>
-        <description>
-            Path where the mongodb is stored.
-        </description>
-    </property>
-    <property>
-        <name>bind_ip</name>
-        <value>0.0.0.0</value>
-        <description>
-            Interface on which to listen, by default all interfaces.
-            Set for example, 127.0.0.1 to switch to the local loopback interface only.
-            Or set to a specific internal IP if known.
-        </description>
-    </property>
-    <property>
-        <name>tcp_port</name>
-        <value>27017</value>
-        <description>
-            Port on which mongod listens for incoming client connections.
-            The Web Status page is always 1000 higher than this port number
-        </description>
-    </property>
+<configuration supports_adding_forbidden="true">
+  <property>
+    <name>bind_ip</name>
+    <value>0.0.0.0</value>
+    <description>
+      Interface on which to listen, by default all interfaces.
+      Set for example, 127.0.0.1 to switch to the local loopback interface only.
+      Or set to a specific internal IP if known.
+    </description>
+  </property>
+
+  <property>
+    <name>tcp_port</name>
+    <value>27017</value>
+    <description>
+      Port on which mongod listens for incoming client connections.
+      The Web Status page is always 1000 higher than this port number.
+    </description>
+  </property>
+
+  <property>
+    <name>db_path</name>
+    <value>/var/lib/mongo</value>
+    <description>Path where the mongodb is stored.</description>
+    <value-attributes>
+      <type>directory</type>
+    </value-attributes>
+  </property>
+
+  <property require-input="false">
+    <name>db_name</name>
+    <value></value>
+    <description>Name of the database to create post installation.</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>db_user</name>
+    <value>anadmin</value>
+    <description>Create a user for the database.</description>
+    <value-attributes>
+      <type>user</type>
+    </value-attributes>
+  </property>
+
+  <property require-input="false">
+    <name>db_pass</name>
+    <value></value>
+    <property-type>PASSWORD</property-type>
+    <description>
+      Password for a user.
+      If left blank, post-install script will not create a user in MongoDB.
+    </description>
+    <value-attributes>
+      <type>password</type>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
 </configuration>
