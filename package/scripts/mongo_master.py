@@ -1,35 +1,45 @@
-from time import sleep
 from resource_management import *
 from mongo_base import MongoBase
 
-class MongoMaster(MongoBase):
+
+class MongoServer(MongoBase):
     mongo_packages = ['mongodb-org']
+
 
     def install(self, env):
         import params
+
         env.set_params(params)
-        self.installMongo(env)
+
+        self.install_mongo(env)
+        self.create_admin_user(env)
+        self.configure_mongod(env)
+
 
     def configure(self, env):
         import params
+
         env.set_params(params)
-        self.configureMongo(env)
+
+        self.configure_mongod(env)
+
 
     def start(self, env):
-        self.configure(env)
         print "start mongodb"
+        self.configure(env)
         Execute('service mongod start')
-        sleep(1)
-        self.createDB(env)
+
 
     def stop(self, env):
-        print "stop services.."
+        print "stop mongodb"
         Execute('service mongod stop')
 
+
     def restart(self, env):
-        self.configure(env)
         print "restart mongodb"
+        self.configure(env)
         Execute('service mongod restart')
+
 
     def status(self, env):
         print "checking status..."
@@ -37,4 +47,4 @@ class MongoMaster(MongoBase):
 
 
 if __name__ == "__main__":
-    MongoMaster().execute()
+    MongoServer().execute()
