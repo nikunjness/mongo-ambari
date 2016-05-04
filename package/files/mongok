@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [[ "$@" == *"--help"* ]]; then
   echo "mongok script, wrapper around common mongod client commands to connect directly"
   echo "to the mongo which sits in this kave. Reads the contents of /etc/mongoclient.conf"

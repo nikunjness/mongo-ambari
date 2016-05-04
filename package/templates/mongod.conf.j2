@@ -28,8 +28,9 @@ net:
   port: {{ tcp_port }}
   bindIp: {{ bind_ip }}  # Listen to local interface only, comment to listen on all interfaces.
 
-
-#security:
+# Enable Role-Based Access Control
+security:
+  authorization: {{ auth }}
 
 #operationProfiling:
 

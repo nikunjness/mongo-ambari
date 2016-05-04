@@ -9,24 +9,28 @@
       <version>3.2</version>
       <components>
         <component>
-          <name>MONGODB_MASTER</name>
+          <name>MONGODB_SERVER</name>
           <displayName>MongoDB Server</displayName>
           <category>MASTER</category>
+          <cardinality>1</cardinality>
           <commandScript>
             <script>scripts/mongo_master.py</script>
             <scriptType>PYTHON</scriptType>
-            <timeout>600</timeout>
+            <timeout>300</timeout>
           </commandScript>
         </component>
 
         <component>
           <name>MONGODB_CLIENT</name>
-          <displayName>MongoDB Clients. Installs the client libraries and the mongok script for ease of use.</displayName>
+          <displayName>
+            MongoDB Shell and utilities.
+            Additionally, install 'mongok' wrapper script for ease of use.</displayName>
           <category>CLIENT</category>
+          <cardinality>0+</cardinality>
           <commandScript>
             <script>scripts/mongo_client.py</script>
             <scriptType>PYTHON</scriptType>
-            <timeout>600</timeout>
+            <timeout>300</timeout>
           </commandScript>
         </component>
       </components>
@@ -36,6 +40,7 @@
           <osFamily>redhat5,redhat6,redhat7</osFamily>
           <packages>
             <package>
+              <!-- FIXME: dummy package -->
               <name>glibc</name>
             </package>
           </packages>
@@ -43,7 +48,8 @@
       </osSpecifics>
 
       <configuration-dependencies>
-        <config-type>mongodb</config-type>
+        <config-type>mongod-conf</config-type>
+        <config-type>mongodb-admin</config-type>
       </configuration-dependencies>
     </service>
   </services>

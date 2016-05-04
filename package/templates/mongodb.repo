@@ -1,5 +1,0 @@
-[mongodb-org]
-name=MongoDB Repository
-baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.2/$basearch/
-gpgcheck=0
-enabled=1
