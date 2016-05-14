@@ -29,6 +29,7 @@
     <value-attributes>
       <type>user</type>
       <empty-value-valid>true</empty-value-valid>
+      <editable-only-at-install>true</editable-only-at-install>
     </value-attributes>
   </property>
 
@@ -43,6 +44,7 @@
     <value-attributes>
       <type>password</type>
       <empty-value-valid>true</empty-value-valid>
+      <editable-only-at-install>true</editable-only-at-install>
     </value-attributes>
   </property>
 </configuration>
